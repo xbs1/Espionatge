@@ -1,3 +1,6 @@
 from django.contrib import admin
-from appEspionatge.models import Espionatge
-admin.site.register(Espionatge)
+from appEspionatge.models import *
+
+admin.site.register(Case)
+admin.site.register(Client)
+admin.site.register(Suspect)
