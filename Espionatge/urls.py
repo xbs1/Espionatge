@@ -1,12 +1,12 @@
 from django.conf.urls import patterns, include, url
-
+from appEspionatge import views
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
     # Examples:
-     url(r'^$','../appEspionatge/templates/mainpage.html', name='home'),
+     url(r'^$', views.mainpage, name='home'),
     # url(r'^Espionatge/', include('Espionatge.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
