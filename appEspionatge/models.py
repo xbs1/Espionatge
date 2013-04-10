@@ -2,15 +2,21 @@ from django.db import models
 
 class Client(models.Model):
 	name = models.TextField(max_length=100)
-	#case = models.ForeignKey(Case)
+
+	def __unicode__(self):
+		return self.name
 	
 class Suspect(models.Model):
 	name = models.TextField(max_length=100)
-	#case = models.ForeignKey(Case)
+
+	def __unicode__(self):
+		return self.name
 
 class Detective(models.Model):
 	name = models.TextField(max_length=100)
-	#case = models.ForeignKey(Case)
+
+	def __unicode__(self):
+		return self.name
 
 class Case(models.Model):
 	name = models.TextField(max_length=100)
@@ -19,4 +25,7 @@ class Case(models.Model):
 	suspect = models.ForeignKey(Suspect)
 	detective = models.ForeignKey(Detective)
 	price = models.IntegerField()
+
+	def __unicode__(self):
+		return self.name
 
