@@ -6,7 +6,7 @@ class Client(models.Model):
 	hide_id = models.BooleanField(default=False)
 
 	def __unicode__(self):
-		return self.name
+		return self.name		
 	
 class Suspect(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -30,8 +30,11 @@ class Case(models.Model):
 	name = models.TextField(max_length=100)
 	date = models.DateTimeField()
 	client = models.ForeignKey(Client)
+	#clients = models.ManyToManyField(Client)
 	suspect = models.ForeignKey(Suspect)
+	#suspects = models.ManyToManyField(Suspect)
 	detective = models.ForeignKey(Detective)
+	#detectives = models.ManyToManyField(Detective)
 	price = models.IntegerField()
 
 	def __unicode__(self):
