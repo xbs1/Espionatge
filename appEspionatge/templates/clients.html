@@ -3,5 +3,10 @@
 {% block title %}Clients{% endblock %}
 
 {% block content %}
-<p>Clients content here</p>
+<p>Clients</p>
+<ul>
+	{% for client in clients %}
+		<li><a href='{{client.id}}'>{{client.name}}</a></li>
+	{% endfor %}
+</ul>
 {% endblock %}

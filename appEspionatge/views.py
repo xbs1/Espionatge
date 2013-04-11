@@ -31,7 +31,6 @@ def mainpage(request):
 
 def cases(request):
 	cases = Case.objects.all()
-
 	template = get_template('cases.html')
 	variables = Context({
 		'cases' : cases
@@ -40,20 +39,80 @@ def cases(request):
 	return HttpResponse(output)
 
 def clients(request):
+	clients = Client.objects.all()
 	template = get_template('clients.html')
-	variables = Context({})
+	variables = Context({
+		'clients': clients
+		})
 	output = template.render(variables)
 	return HttpResponse(output)
 
 def detectives(request):
+	detectives = Detective.objects.all()
 	template = get_template('detectives.html')
-	variables = Context({})
+	variables = Context({
+		'detectives': detectives
+	})
 	output = template.render(variables)
 	return HttpResponse(output)
 
 def suspects(request):
+	suspects = Suspect.objects.all()
 	template = get_template('suspects.html')
-	variables = Context({})
+	variables = Context({
+		'suspects': suspects
+	})
 	output = template.render(variables)
 	return HttpResponse(output)
+
+def case(request, ID):
+	try:
+		case = Case.objects.get(id=ID)
+	except:
+		raise Http404('Case not found.')
 	
+	template = get_template('case.html')
+	variables = Context({
+		'case': case
+		})
+	output = template.render(variables)
+	return HttpResponse(output)
+
+def client(request, ID):
+	try:
+		client = Client.objects.get(id=ID)	
+	except:
+		raise Http404('Client not found.')
+
+	template = get_template('client.html')
+	variables = Context({
+		'client': client
+		})
+	output = template.render(variables)
+	return HttpResponse(output)	
+
+def suspect(request, ID):
+	try:
+		suspect = Suspect.objects.get(id=ID)	
+	except:
+		raise Http404('Suspect not found.')
+
+	template = get_template('suspect.html')
+	variables = Context({
+		'suspect': suspect
+		})
+	output = template.render(variables)
+	return HttpResponse(output)		
+
+def detective(request, ID):
+	try:
+		detective = Detective.objects.get(id=ID)	
+	except:
+		raise Http404('Detective not found.')
+
+	template = get_template('detective.html')
+	variables = Context({
+		'detective': detective
+		})
+	output = template.render(variables)
+	return HttpResponse(output)		

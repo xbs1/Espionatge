@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Case{% endblock %}
+
+{% block content %}
+<ul>
+	<p>Case</p>
+	<li>Name: {{case.name}}</li>
+	<li>Client: {{case.client}}</li>
+	<li>Suspect: {{case.suspect}}</li>
+	<li>Detective: {{case.detective}}</li>
+	<li>Price: {{case.price}}</li>
+</ul>
+{% endblock %}
+

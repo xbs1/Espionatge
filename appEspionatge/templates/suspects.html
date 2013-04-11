@@ -3,5 +3,10 @@
 {% block title %}Suspects{% endblock %}
 
 {% block content %}
-<p>Suspects content here</p>
+<p>Suspects</p>
+<ul>
+	{% for suspect in suspects %}
+		<li><a href='{{suspect.id}}'>{{suspect.name}}</a></li>
+	{% endfor %}
+</ul>
 {% endblock %}

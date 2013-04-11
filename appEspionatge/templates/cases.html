@@ -5,7 +5,7 @@
 {% block content %}
 <ul>
 	{% for case in cases %}
-		<li>{{case.name}}</li>
+		<li><a href='{{case.id}}'>{{case.name}}</a></li>
 	{% endfor %}
 </ul>
 {% endblock %}
