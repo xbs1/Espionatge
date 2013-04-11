@@ -3,13 +3,30 @@
 {% block title %}Case{% endblock %}
 
 {% block content %}
-<ul>
-	<p>Case</p>
-	<li>Name: {{case.name}}</li>
-	<li>Client: {{case.client}}</li>
-	<li>Suspect: {{case.suspect}}</li>
-	<li>Detective: {{case.detective}}</li>
-	<li>Price: {{case.price}}</li>
-</ul>
+<table border="1" cellpadding="3" width="300" cellspacing="0">
+	<tbody align="center">
+	<tr> 
+		<th>Name</th>
+		<td>{{case.name}}</td>
+	<tr>
+	<tr> 
+		<th>Client/s</th>
+		<td>{{case.client}}</td>
+	<tr>
+	<tr> 
+		<th>Suspect/s</th>
+		<td>{{case.suspect}}</td>
+	<tr>
+	<tr> 
+		<th>Detective/s</th>
+		<td>{{case.detective}}</td>
+	<tr>
+	<tr> 
+		<th>Total price</th>
+		<td>{{case.price}}</td>
+	<tr>
+	</tbody>
+</table>
+
 {% endblock %}
 

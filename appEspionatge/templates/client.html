@@ -3,11 +3,17 @@
 {% block title %}Client{% endblock %}
 
 {% block content %}
-
-<ul>
-	<p>Client</p>
-	<li>Client name: {{client.name}}</li>
-	<li>Hide identity: {{client.hide_id}}</li>
-</ul>	
+<table border="1" cellpadding="3" width="300" cellspacing="0">
+	<tbody align="center">
+	<tr> 
+		<th>Client name</th>
+		<td>{{client.name}}</td>
+	<tr>
+	<tr> 
+		<th>Hide identity</th>
+		<td>{{client.hide_id}}</td>
+	<tr>
+	</tbody>
+</table>	
 
 {% endblock %}

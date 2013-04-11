@@ -4,11 +4,21 @@
 
 {% block content %}
 
-<ul>
-	<p>Detective</p>
-	<li>Name: {{detective.name}}</li>
-	<li>Rate price: {{detective.rate}}</li>
-	<li>Experieny (years): {{detective.experience}}</li>
-</ul>
+<table border="1" cellpadding="3" width="300" cellspacing="0">
+	<tbody align="center">
+	<tr> 
+		<th>Name or alias</th>
+		<td>{{detective.name}}</td>
+	<tr>
+	<tr> 
+		<th>Rate (/hour)</th>
+		<td>{{detective.rate}}</td>
+	<tr>
+	<tr> 
+		<th>Experience (in years)</th>
+		<td>{{detective.experience}}</td>
+	<tr>
+	</tbody>
+</table>
 
 {% endblock %}

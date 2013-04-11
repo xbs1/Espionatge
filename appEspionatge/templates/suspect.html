@@ -4,10 +4,17 @@
 
 {% block content %}
 
-<ul>
-	<p>Suspect</p>
-	<li>Name: {{suspect.name}}</li>
-	<li>History: {{suspect.history}}</li>
-</ul>
+<table border="1" cellpadding="3" width="300" cellspacing="0">
+	<tbody align="center">
+	<tr> 
+		<th>Name</th>
+		<td>{{suspect.name}}</td>
+	<tr>
+	<tr> 
+		<th>Delictive history</th>
+		<td>{{suspect.history}}</td>
+	<tr>
+	</tbody>
+</table>
 
 {% endblock %}
