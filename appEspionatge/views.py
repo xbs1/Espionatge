@@ -18,7 +18,7 @@ def userpage(request, username):
 	return HttpResponse(output)
 
 def mainpage(request):
-	template = get_template('base.html')
+	template = get_template('mainpage.html')
 	variables = Context({
 		'titlehead': 'titlehead',
 		'pagetitle': 'pagetitle',

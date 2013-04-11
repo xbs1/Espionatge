@@ -1,9 +1,7 @@
-<html>
-	<head>
-		<title>{{ titlehead}}</title>
-	</head>
-	<body>
-		<h1>{{ pagetitle }}</h1>
-		<p>{{ contentbody }}</p>
-	</body>
-</html>
+{% extends "base.html" %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block content %}
+<p>Welcome page content here</p>
+{% endblock %}
