@@ -1,27 +1,25 @@
-#button {
-	padding: 0;
+
+body{
+	background-color:DarkGray;
 }
 
-#button li {
-	display: inline;
+#NavBar {
+	margin-top:14px;
+	margin-left:-3px;
 }
-
-#button li a {
+#NavBar a {
+	margin-top:100px;
 	font-family: Arial;
-	font-size:11px;
+	font-size:15px;
 	text-decoration: none;
-	float:left;
-	padding: 10px;
+	padding: 15px;
 	background-color: #2175bc;
 	color: #fff;
+	margin-left:-5px;
 }
 
-#button li a:hover {	
+#NavBar a:hover {	
 	background-color: #2586d7;
 	margin-top:-2px;
 	padding-bottom:12px;
-}
-ul{
-color:red;
-margin-top:100px;
 }

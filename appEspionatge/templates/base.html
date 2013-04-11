@@ -7,18 +7,17 @@
 </head>
 
 <body>
-    <div id="sidebar">
-        {% block sidebar %}
-        <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/cases/">Cases</a></li>
-            <li><a href="/clients/">Clients</a></li>
-            <li><a href="/detectives/">Detectives</a></li>
-			<li><a href="/suspects/">Suspects</a></li>
-        </ul>
+
+    <div id="NavBar">
+        {% block NavBar %}
+            <a href="/">Home</a>
+            <a href="/cases/">Cases</a>
+            <a href="/clients/">Clients</a>
+            <a href="/detectives/">Detectives</a>
+			<a href="/suspects/">Suspects</a>
         {% endblock %}
     </div>
-
+    
     <div id="content">
         {% block content %}{% endblock %}
     </div>
