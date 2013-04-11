@@ -18,7 +18,7 @@ def userpage(request, username):
 	return HttpResponse(output)
 
 def mainpage(request):
-	template = get_template('mainpage.html')
+	template = get_template('base.html')
 	variables = Context({
 		'titlehead': 'titlehead',
 		'pagetitle': 'pagetitle',
@@ -26,3 +26,28 @@ def mainpage(request):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
+
+def cases(request):
+	template = get_template('cases.html')
+	variables = Context({})
+	output = template.render(variables)
+	return HttpResponse(output)
+
+def clients(request):
+	template = get_template('clients.html')
+	variables = Context({})
+	output = template.render(variables)
+	return HttpResponse(output)
+
+def detectives(request):
+	template = get_template('detectives.html')
+	variables = Context({})
+	output = template.render(variables)
+	return HttpResponse(output)
+
+def suspects(request):
+	template = get_template('suspects.html')
+	variables = Context({})
+	output = template.render(variables)
+	return HttpResponse(output)
+	

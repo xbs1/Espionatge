@@ -1,39 +1,22 @@
-<html>
-	<title>
-		<head>
-			<link rel="stylesheet" type="text/css" href="base.css">
-			HOME
-		</head>
-	</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <title>{% block title %}My amazing site{% endblock %}</title>
+</head>
+
 <body>
-	<div align="center">
-		<ul id="button">
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Suspects</a></li>
-			<li><a href="#">Clients</a></li>
-			<li><a href="#">Cases</a></li>
-			<li><a href="#">Detectives</a></li>
-		</ul>
-	</div>
-	<td width="160" valign="top" id="menu">
-		<p>Menú</p>
-		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Suspects</a></li>
-			<li><a href="#">Clients</a></li>
-			<li><a href="#">Cases</a></li>
-			<li><a href="#">Detectives</a></li>
-		</ul>
-	
-	<table>
-		<tr>
-			<td>Cases</td>
-			<td>Clients</td>
-			<td>Suspects</td>
-			<td>Detectives</td>
-		</tr>
+    <div id="sidebar">
+        {% block sidebar %}
+        <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/blog/">Blog</a></li>
+        </ul>
+        {% endblock %}
+    </div>
 
-	</table>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
 </body>
-
 </html>
