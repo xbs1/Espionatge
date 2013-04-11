@@ -1,0 +1,27 @@
+#button {
+	padding: 0;
+}
+
+#button li {
+	display: inline;
+}
+
+#button li a {
+	font-family: Arial;
+	font-size:11px;
+	text-decoration: none;
+	float:left;
+	padding: 10px;
+	background-color: #2175bc;
+	color: #fff;
+}
+
+#button li a:hover {	
+	background-color: #2586d7;
+	margin-top:-2px;
+	padding-bottom:12px;
+}
+ul{
+color:red;
+margin-top:1000px;
+}
