@@ -3,10 +3,18 @@
 {% block title %}Detectives{% endblock %}
 
 {% block content %}
+	
+	<div id="Route" align="left">
+			    <a href="/">Home</a><a> > </a>
+			    <a>Detectives</a>
+	</div>
 	Detectives
-	<p/>
 	{% for detective in detectives %}
-		<li><a href='{{detective.id}}'>{{detective.name}}</a></li>
+	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+		<tr> 
+			<td><a href='{{detective.id}}'>{{detective.name}}</a></td>
+		<tr>
+	</table>
 	{% endfor %}
 
 {% endblock %}

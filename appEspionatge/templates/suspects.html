@@ -3,10 +3,17 @@
 {% block title %}Suspects{% endblock %}
 
 {% block content %}
+<div id="Route" align="left">
+    <a href="/">Home</a><a> > </a>
+    <a>Suspects</a>
+</div>
 	Suspects
-	<p/>
 	{% for suspect in suspects %}
-		<li><a href='{{suspect.id}}'>{{suspect.name}}</a></li>
+	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+		<tr> 
+			<td><a href='{{suspect.id}}'>{{suspect.name}}</a></td>
+		<tr>
+	</table>
 	{% endfor %}
 
 {% endblock %}

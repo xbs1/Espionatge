@@ -3,10 +3,17 @@
 {% block title %}Clients{% endblock %}
 
 {% block content %}
+	<div id="Route" align="left">
+			    <a href="/">Home</a><a> > </a>
+			    <a>Clients</a>
+	</div>
 	Clients
-	<p/>
 	{% for client in clients %}
-		<li><a href='{{client.id}}'>{{client.name}}</a></li>
+	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+		<tr> 
+			<td><a href='{{client.id}}'>{{client.name}}</a></td>
+		<tr>
+	</table>	
 	{% endfor %}
 
 {% endblock %}

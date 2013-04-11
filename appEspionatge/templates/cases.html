@@ -3,10 +3,17 @@
 {% block title %}Cases{% endblock %}
 
 {% block content %}
+<div id="Route" align="left">
+    <a href="/">Home</a><a> > </a>
+    <a>Cases</a>
+</div>
 	Cases
-	<p/>
 	{% for case in cases %}
-		<li><a href='{{case.id}}'>{{case.name}}</a></li>
+	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+		<tr> 
+			<td><a href='{{case.id}}'>{{case.name}}</a></td>
+		<tr>
+	</table>
 	{% endfor %}
 
 {% endblock %}
