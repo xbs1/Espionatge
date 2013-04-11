@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    {% load staticfiles %}
-	<link rel="stylesheet" type="text/css" href="{% static "base.css" %}"media="screen" />
-    <title>{% block title %}Espionatge{% endblock %}</title>
-</head>
+	<head>
+		{% load staticfiles %}
+		<link rel="stylesheet" type="text/css" href="{% static "base.css" %}"media="screen" />
+		<title>{% block title %}Espionatge{% endblock %}</title>
+	</head>
 
-<body>
-
-    <div id="NavBar">
-        {% block NavBar %}
-            <a href="/">Home</a>
-            <a href="/cases/">Cases</a>
-            <a href="/clients/">Clients</a>
-            <a href="/detectives/">Detectives</a>
-			<a href="/suspects/">Suspects</a>
-        {% endblock %}
-    </div>
-    
-    <div id="content">
-        {% block content %}{% endblock %}
-    </div>
-</body>
+	<body>
+		
+		<div id="NavBar">
+			    <a href="/cases/">Cases</a>
+			    <a href="/clients/">Clients</a>
+			    <a href="/detectives/">Detectives</a>
+				<a href="/suspects/">Suspects</a>
+		</div>
+		
+		<div id="pageSize">
+		
+			<div id="content">
+				{% block content %}{% endblock %}
+			</div>
+		
+		</div>
+	</body>
 </html>

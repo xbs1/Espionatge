@@ -1,25 +1,39 @@
 
 body{
-	background-color:DarkGray;
+	margin-top:0px;
+	text-align: center;
+	background-image:url(fondoWeb.jpg);
 }
 
 #NavBar {
-	margin-top:14px;
-	margin-left:-3px;
+	width: 800px;
+	height: 75px;
+	margin: 0 auto;
+	padding-top:20px;
+	background-color:#2586d7;
 }
 #NavBar a {
-	margin-top:100px;
 	font-family: Arial;
 	font-size:15px;
+	font-weight:bold;
 	text-decoration: none;
 	padding: 15px;
 	background-color: #2175bc;
 	color: #fff;
 	margin-left:-5px;
+	width:800px;
+	
 }
 
 #NavBar a:hover {	
 	background-color: #2586d7;
 	margin-top:-2px;
 	padding-bottom:12px;
+}
+
+#pageSize{
+	width: 800px;
+	height: 800px;
+	margin: 0 auto;
+	background-color:white;
 }
