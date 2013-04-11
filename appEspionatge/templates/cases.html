@@ -3,9 +3,10 @@
 {% block title %}Cases{% endblock %}
 
 {% block content %}
-<ul>
+	Cases
+	<p/>
 	{% for case in cases %}
 		<li><a href='{{case.id}}'>{{case.name}}</a></li>
 	{% endfor %}
-</ul>
+
 {% endblock %}

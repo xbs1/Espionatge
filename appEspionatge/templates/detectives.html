@@ -3,10 +3,10 @@
 {% block title %}Detectives{% endblock %}
 
 {% block content %}
-<p>Detectives</p>
-<ul>
+	Detectives
+	<p/>
 	{% for detective in detectives %}
 		<li><a href='{{detective.id}}'>{{detective.name}}</a></li>
 	{% endfor %}
-</ul>
+
 {% endblock %}
