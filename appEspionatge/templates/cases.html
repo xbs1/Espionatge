@@ -3,5 +3,9 @@
 {% block title %}Cases{% endblock %}
 
 {% block content %}
-<p>Cases content here</p>
+<ul>
+	{% for case in cases %}
+		<li>{{case.name}}</li>
+	{% endfor %}
+</ul>
 {% endblock %}

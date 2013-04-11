@@ -4,6 +4,8 @@ from django.template import Context
 from django.template.loader import get_template
 from django.contrib.auth.models import User
 
+from appEspionatge.models import *
+
 def userpage(request, username):
 	try:
 		user = User.objects.get(username=username)
@@ -28,8 +30,12 @@ def mainpage(request):
 	return HttpResponse(output)
 
 def cases(request):
+	cases = Case.objects.all()
+
 	template = get_template('cases.html')
-	variables = Context({})
+	variables = Context({
+		'cases' : cases
+		})
 	output = template.render(variables)
 	return HttpResponse(output)
 
