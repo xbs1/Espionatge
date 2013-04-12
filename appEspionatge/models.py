@@ -29,12 +29,9 @@ class Case(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.TextField(max_length=100)
 	date = models.DateTimeField()
-	client = models.ForeignKey(Client)
-	#clients = models.ManyToManyField(Client)
-	suspect = models.ForeignKey(Suspect)
-	#suspects = models.ManyToManyField(Suspect)
+	clients = models.ManyToManyField(Client)
+	suspects = models.ManyToManyField(Suspect)
 	detective = models.ForeignKey(Detective)
-	#detectives = models.ManyToManyField(Detective)
 	price = models.IntegerField()
 
 	def __unicode__(self):

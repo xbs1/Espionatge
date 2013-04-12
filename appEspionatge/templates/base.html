@@ -9,12 +9,19 @@
 	<body>
 		
 		<div id="NavBar">
-				<a href="/">Home</a>
-			    <a href="/cases/">Cases</a>
-			    <a href="/clients/">Clients</a>
-			    <a href="/detectives/">Detectives</a>
-				<a href="/suspects/">Suspects</a>
-				<a href="/admin/">Login</a>
+			<a href="/">Home</a>
+		    <a href="/cases/">Cases</a>
+		    <a href="/clients/">Clients</a>
+		    <a href="/detectives/">Detectives</a>
+			<a href="/suspects/">Suspects</a>
+			<a href="/login/">Login</a>
+
+			{% if user.is_authenticated %}
+				<p> Logged in as: {{user}} </p>
+			{% else %}
+				<p> Not logged in </p>
+			{% endif %}
+
 		</div>
 		
 		<div id="pageSize">

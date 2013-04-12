@@ -14,19 +14,31 @@
 	<tr> 
 		<th>Name</th>
 		<td>{{case.name}}</td>
-	<tr>
+	</tr>
 	<tr> 
 		<th>Client/s</th>
-		<td>{{case.client}}</td>
+		<td></td>
+	</tr>
+	{% for client in case.clients.all %}
 	<tr>
+		<th></th>
+		<td>{{client.name}}</td>
+	</tr>
+	{% endfor %}
 	<tr> 
 		<th>Suspect/s</th>
-		<td>{{case.suspect}}</td>
+		<td></td>
+	</tr>
+	{% for suspect in case.suspects.all %}
 	<tr>
+		<th></th>
+		<td>{{suspect.name}}</td>
+	</tr>
+	{% endfor %}
 	<tr> 
-		<th>Detective/s</th>
+		<th>Detective</th>
 		<td>{{case.detective}}</td>
-	<tr>
+	</tr>
 	<tr> 
 		<th>Total price</th>
 		<td>{{case.price}}</td>

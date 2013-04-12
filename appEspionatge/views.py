@@ -22,9 +22,7 @@ def userpage(request, username):
 def mainpage(request):
 	template = get_template('mainpage.html')
 	variables = Context({
-		'titlehead': 'titlehead',
-		'pagetitle': 'pagetitle',
-		'contentbody': 'contentbody'
+		'user' : request.user
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
@@ -33,6 +31,7 @@ def cases(request):
 	cases = Case.objects.all()
 	template = get_template('cases.html')
 	variables = Context({
+		'user' : request.user,
 		'cases' : cases
 		})
 	output = template.render(variables)
@@ -42,6 +41,7 @@ def clients(request):
 	clients = Client.objects.all()
 	template = get_template('clients.html')
 	variables = Context({
+		'user' : request.user,
 		'clients': clients
 		})
 	output = template.render(variables)
@@ -51,6 +51,7 @@ def detectives(request):
 	detectives = Detective.objects.all()
 	template = get_template('detectives.html')
 	variables = Context({
+		'user' : request.user,
 		'detectives': detectives
 	})
 	output = template.render(variables)
@@ -60,6 +61,7 @@ def suspects(request):
 	suspects = Suspect.objects.all()
 	template = get_template('suspects.html')
 	variables = Context({
+		'user' : request.user,
 		'suspects': suspects
 	})
 	output = template.render(variables)
@@ -73,6 +75,7 @@ def case(request, ID):
 	
 	template = get_template('case.html')
 	variables = Context({
+		'user' : request.user,
 		'case': case
 		})
 	output = template.render(variables)
@@ -86,6 +89,7 @@ def client(request, ID):
 
 	template = get_template('client.html')
 	variables = Context({
+		'user' : request.user,
 		'client': client
 		})
 	output = template.render(variables)
@@ -99,6 +103,7 @@ def suspect(request, ID):
 
 	template = get_template('suspect.html')
 	variables = Context({
+		'user' : request.user,
 		'suspect': suspect
 		})
 	output = template.render(variables)
@@ -112,7 +117,9 @@ def detective(request, ID):
 
 	template = get_template('detective.html')
 	variables = Context({
+		'user' : request.user,
 		'detective': detective
 		})
 	output = template.render(variables)
 	return HttpResponse(output)		
+	
