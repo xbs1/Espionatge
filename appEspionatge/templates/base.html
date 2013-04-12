@@ -14,11 +14,12 @@
 		    <a href="/clients/">Clients</a>
 		    <a href="/detectives/">Detectives</a>
 			<a href="/suspects/">Suspects</a>
-			<a href="/login/">Login</a>
-
+			
 			{% if user.is_authenticated %}
+				<a href="/login/">Logout</a>
 				<p> Logged in as: {{user}} </p>
 			{% else %}
+				<a href="/login/">Login</a>
 				<p> Not logged in </p>
 			{% endif %}
 
