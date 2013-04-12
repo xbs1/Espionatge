@@ -19,3 +19,5 @@ def xml_list_all_links(model, path, request):
 
 	return document.toxml()
 	
+def xml_show_content(instance, path, request):
+	return 'xml'

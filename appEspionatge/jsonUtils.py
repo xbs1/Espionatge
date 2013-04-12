@@ -8,8 +8,14 @@ def json_list_all_links(model, path, request):
 		paths.append(instance.get_path(request))
 
 	data = simplejson.dumps({
-	'links': paths
+	path: paths
 	})
 	
 	return data
+	
+	
+def json_show_content(instance, path, request):
+
+	return simplejson.dumps(instance.show_content(path, request))
+	
 	

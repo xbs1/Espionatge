@@ -8,6 +8,19 @@ from appEspionatge.models import *
 from xmlUtils  import *
 from jsonUtils import *
 
+
+def getFormat(request):
+
+	formatting = request.GET.get('format')	
+	
+	if formatting == 'xml':
+		return 'xml'
+	elif formatting == 'json':
+		return 'json'
+	else:
+		return 'html'
+		
+		
 def list_all_links(model, path, request):
 	format = getFormat(request)
 	
@@ -15,6 +28,15 @@ def list_all_links(model, path, request):
 		return xml_list_all_links(model, path, request)
 	elif format == "json":
 		return json_list_all_links(model, path, request)
+	
+	
+def show_content(instance, request, path ):
+	format = getFormat(request)
+	
+	if format == "xml": 
+		return xml_show_content(instance, path, request)
+	elif format == "json":
+		return json_show_content(instance, path, request)
 	
 def userpage(request, username):
 	try:
@@ -37,16 +59,7 @@ def mainpage(request):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
-
-def getFormat(request):
-	formatting = request.GET.get('format')	
 	
-	if formatting == 'xml':
-		return 'xml'
-	elif formatting == 'json':
-		return 'json'
-	else:
-		return 'html'
 
 def cases(request):
 	if getFormat(request) == 'html':
@@ -109,13 +122,17 @@ def case(request, ID):
 		case = Case.objects.get(id=ID)
 	except:
 		raise Http404('Case not found.')
-	
-	template = get_template('case.html')
-	variables = Context({
-		'user' : request.user,
-		'case': case
-		})
-	output = template.render(variables)
+		
+	if getFormat(request) == 'html':
+		template = get_template('case.html')
+		variables = Context({
+			'user' : request.user,
+			'case': case
+			})
+		output = template.render(variables)
+	else:
+		output = show_content(case, request, 'cases')
+		
 	return HttpResponse(output)
 
 def client(request, ID):
@@ -124,12 +141,16 @@ def client(request, ID):
 	except:
 		raise Http404('Client not found.')
 
-	template = get_template('client.html')
-	variables = Context({
-		'user' : request.user,
-		'client': client
-		})
-	output = template.render(variables)
+	if getFormat(request) == 'html':
+		template = get_template('client.html')
+		variables = Context({
+			'user' : request.user,
+			'client': client
+			})
+		output = template.render(variables)
+	else:
+		output = show_content(client, request, 'clients')
+		
 	return HttpResponse(output)	
 
 def suspect(request, ID):
@@ -138,13 +159,18 @@ def suspect(request, ID):
 	except:
 		raise Http404('Suspect not found.')
 
-	template = get_template('suspect.html')
-	variables = Context({
-		'user' : request.user,
-		'suspect': suspect
-		})
-	output = template.render(variables)
-	return HttpResponse(output)		
+	if getFormat(request) == 'html':
+		template = get_template('suspect.html')
+		variables = Context({
+			'user' : request.user,
+			'suspect': suspect
+			})
+		output = template.render(variables)
+	else:
+		output = show_content(suspect, request, 'suspects')
+		
+	return HttpResponse(output)	
+		
 
 def detective(request, ID):
 	try:
@@ -152,11 +178,15 @@ def detective(request, ID):
 	except:
 		raise Http404('Detective not found.')
 
-	template = get_template('detective.html')
-	variables = Context({
-		'user' : request.user,
-		'detective': detective
-		})
-	output = template.render(variables)
+	if getFormat(request) == 'html':
+		template = get_template('detective.html')
+		variables = Context({
+			'user' : request.user,
+			'detective': detective
+			})
+		output = template.render(variables)
+	else:
+		output = show_content(detective, request, 'detectives')
+		
 	return HttpResponse(output)		
 	
