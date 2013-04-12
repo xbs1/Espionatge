@@ -1,12 +1,21 @@
 from django.http import HttpResponse, Http404
-
 from django.template import Context
 from django.core import serializers
 from django.template.loader import get_template
 from django.contrib.auth.models import User
-import xml.etree.ElementTree as ET
-from appEspionatge.models import *
 
+from appEspionatge.models import *
+from xmlUtils  import *
+from jsonUtils import *
+
+def list_all_links(model, path, request):
+	format = getFormat(request)
+	
+	if format == "xml":
+		return xml_list_all_links(model, path, request)
+	elif format == "json":
+		return json_list_all_links(model, path, request)
+	
 def userpage(request, username):
 	try:
 		user = User.objects.get(username=username)
@@ -21,45 +30,23 @@ def userpage(request, username):
 	return HttpResponse(output)
 	
     
-def mainpage(request):
-	template = get_template('mainpage.html')
-	variables = Context({
-		'user' : request.user
-		})
-	output = template.render(variables)
-	return HttpResponse(output)
+def mainpage(request):	
+	return HttpResponse(list_all_links(Case, "cases", request))
 
 
 def getFormat(request):
-
 	formatting = request.GET.get('format')	
 	
 	if formatting == 'xml':
 		return 'xml'
-
 	elif formatting == 'json':
 		return 'json'
-
 	else:
 		return 'html'
 
-
 def cases(request):
 	
-	output = None
-	if getFormat(request) == 'xml':
-		template = get_template('mainpage.html')
-		variables = Context({
-			})
-		output = template.render(variables)
-
-	elif getFormat(request) == 'json':
-		template = get_template('clients.html')
-		variables = Context({
-			})
-		output = template.render(variables)
-
-	else:
+	if getFormat(request) == 'html':
 		cases = Case.objects.all()
 		template = get_template('cases.html')
 		variables = Context({
@@ -67,7 +54,9 @@ def cases(request):
 			'cases' : cases
 			})
 		output = template.render(variables)
-
+	else:
+		output = list_all_links(Case, "cases", request)
+		
 	return HttpResponse(output)
 
 def clients(request):
