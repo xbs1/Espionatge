@@ -4,7 +4,7 @@ from django.template import Context
 from django.core import serializers
 from django.template.loader import get_template
 from django.contrib.auth.models import User
-
+import xml.etree.ElementTree as ET
 from appEspionatge.models import *
 
 def userpage(request, username):
@@ -19,6 +19,7 @@ def userpage(request, username):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
+	
     
 def mainpage(request):
 	template = get_template('mainpage.html')
@@ -28,17 +29,49 @@ def mainpage(request):
 	output = template.render(variables)
 	return HttpResponse(output)
 
+
+def getFormat(request):
+
+	formatting = request.GET.get('format')	
+	
+	if formatting == 'xml':
+		return 'xml'
+
+	elif formatting == 'json':
+		return 'json'
+
+	else:
+		return 'html'
+
+
 def cases(request):
-	cases = Case.objects.all()
-	template = get_template('cases.html')
-	variables = Context({
-		'user' : request.user,
-		'cases' : cases
-		})
-	output = template.render(variables)
+	
+	output = None
+	if getFormat(request) == 'xml':
+		template = get_template('mainpage.html')
+		variables = Context({
+			})
+		output = template.render(variables)
+
+	elif getFormat(request) == 'json':
+		template = get_template('clients.html')
+		variables = Context({
+			})
+		output = template.render(variables)
+
+	else:
+		cases = Case.objects.all()
+		template = get_template('cases.html')
+		variables = Context({
+			'user' : request.user,
+			'cases' : cases
+			})
+		output = template.render(variables)
+
 	return HttpResponse(output)
 
 def clients(request):
+
 	clients = Client.objects.all()
 	template = get_template('clients.html')
 	variables = Context({

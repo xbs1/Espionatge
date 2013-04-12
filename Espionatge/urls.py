@@ -17,6 +17,8 @@ urlpatterns = patterns('',
 	url(r'^suspects/(\w+)/$', views.suspect),
     url(r'^detectives/(\w+)/$', views.detective),
     
+
+    
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
