@@ -86,7 +86,7 @@ class Case(models.Model):
 		return { 
 		'id': self.id,
 		'name': self.name,
-		'date': self.date,
+		'date': str(self.date),
 		'clients': clients,
 		'suspects': suspects,
 		'price': self.price

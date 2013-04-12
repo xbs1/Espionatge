@@ -20,4 +20,27 @@ def xml_list_all_links(model, path, request):
 	return document.toxml()
 	
 def xml_show_content(instance, path, request):
-	return 'xml'
+	impl = getDOMImplementation()
+	document = impl.createDocument(None, path, None)
+	
+	data = instance.show_content(path, request)
+	
+	i = 0
+	for key in data.keys():
+		value = data[key]
+		node = document.createElement(key)
+		
+		if isinstance(value, list):
+			for link in value:
+				linkNode = document.createElement("link")
+				text = document.createTextNode(link)
+				linkNode.appendChild(text)
+				node.appendChild(linkNode)
+		else:
+			node.appendChild(document.createTextNode(str(value)))
+	
+		document.documentElement.appendChild(node)
+		i += 1
+    	 
+	return document.toxml()
+	
