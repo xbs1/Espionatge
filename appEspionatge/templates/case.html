@@ -6,7 +6,7 @@
 <div id="Route" align="left">
     <a href="/">Home</a><a> > </a>
     <a href="/cases/">Cases</a><a> > </a>
-    <a>Case</a>
+    <a>{{case.name}}</a>
 </div>
 <div align="center">
 <table border="1" cellpadding="3" width="300" cellspacing="0">
@@ -22,7 +22,7 @@
 	{% for client in case.clients.all %}
 	<tr>
 		<th></th>
-		<td>{{client.name}}</td>
+		<td><a href='/clients/{{client.id}}'>{{client}}</a></td>
 	</tr>
 	{% endfor %}
 	<tr> 
@@ -32,12 +32,12 @@
 	{% for suspect in case.suspects.all %}
 	<tr>
 		<th></th>
-		<td>{{suspect.name}}</td>
+		<td><a href='/suspects/{{suspect.id}}'>{{suspect}}</a></td>
 	</tr>
 	{% endfor %}
 	<tr> 
 		<th>Detective</th>
-		<td>{{case.detective}}</td>
+		<td><a href='/detectives/{{case.detective.id}}'>{{case.detective}}</a></td>
 	</tr>
 	<tr> 
 		<th>Total price</th>
