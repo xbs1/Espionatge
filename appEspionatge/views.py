@@ -31,8 +31,12 @@ def userpage(request, username):
 	
     
 def mainpage(request):	
-	return HttpResponse(list_all_links(Case, "cases", request))
-
+	template = get_template('mainpage.html')
+	variables = Context({
+		'user' : request.user
+		})
+	output = template.render(variables)
+	return HttpResponse(output)
 
 def getFormat(request):
 	formatting = request.GET.get('format')	
@@ -45,7 +49,6 @@ def getFormat(request):
 		return 'html'
 
 def cases(request):
-	
 	if getFormat(request) == 'html':
 		cases = Case.objects.all()
 		template = get_template('cases.html')
@@ -60,34 +63,45 @@ def cases(request):
 	return HttpResponse(output)
 
 def clients(request):
-
-	clients = Client.objects.all()
-	template = get_template('clients.html')
-	variables = Context({
-		'user' : request.user,
-		'clients': clients
-		})
-	output = template.render(variables)
+	if getFormat(request) == 'html':
+		clients = Client.objects.all()
+		template = get_template('clients.html')
+		variables = Context({
+			'user' : request.user,
+			'clients': clients
+			})
+		output = template.render(variables)
+	else:
+		output = list_all_links(Client, "clients", request)
+		
 	return HttpResponse(output)
 
 def detectives(request):
-	detectives = Detective.objects.all()
-	template = get_template('detectives.html')
-	variables = Context({
-		'user' : request.user,
-		'detectives': detectives
-	})
-	output = template.render(variables)
+	if getFormat(request) == 'html':
+		detectives = Detective.objects.all()
+		template = get_template('detectives.html')
+		variables = Context({
+			'user' : request.user,
+			'detectives': detectives
+		})
+		output = template.render(variables)
+	else:
+		output = list_all_links(Detective, "detectives", request)
+	
 	return HttpResponse(output)
 
 def suspects(request):
-	suspects = Suspect.objects.all()
-	template = get_template('suspects.html')
-	variables = Context({
-		'user' : request.user,
-		'suspects': suspects
-	})
-	output = template.render(variables)
+	if getFormat(request) == 'html':
+		suspects = Suspect.objects.all()
+		template = get_template('suspects.html')
+		variables = Context({
+			'user' : request.user,
+			'suspects': suspects
+		})
+		output = template.render(variables)
+	else:
+		output = list_all_links(Suspect, "suspects", request)
+		
 	return HttpResponse(output)
 
 def case(request, ID):
