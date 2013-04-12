@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}Case{% endblock %}
+
+{% block content %}
+
+{% if form.has_errors %}
+<p> Error validating user </p>
+{% endif%}
+
+{% if user.is_authenticated %}
+	
+	<form method="get" action=".">
+	
+	<input type="hidden" name="next" value="/" />
+	<input type="submit" value="logout" />
+	</form>
+	
+{% endif %}
+
+{% endblock %}
+

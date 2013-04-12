@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 
 from django.template import Context
+from django.core import serializers
 from django.template.loader import get_template
 from django.contrib.auth.models import User
 
@@ -18,7 +19,7 @@ def userpage(request, username):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
-
+    
 def mainpage(request):
 	template = get_template('mainpage.html')
 	variables = Context({

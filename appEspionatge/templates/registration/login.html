@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Case{% endblock %}
+{% block title %}Login{% endblock %}
 
 {% block content %}
 <div id="Route" align="left">
@@ -14,8 +14,12 @@
 
 {% if user.is_authenticated %}
 	
+	<form method="post" action="/logout/">
+	
 	<input type="hidden" name="next" value="/" />
-	<input type="submit" value="logout" /> 
+	<input type="submit" value="logout" />
+	{% csrf_token %} 
+	</form>
 
 {% else %}
 	<form method="post" action=".">
