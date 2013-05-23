@@ -3,6 +3,13 @@
 {% block title %}Welcome{% endblock %}
 
 {% block content %}
-	Welcome page content here
-	<p/>
+	
+	{% if user.is_authenticated %}
+				<a href="">Create a new case</a>
+				
+	{% else %}
+				<p> Thanks to visit us. Please, login or sign in if you have not done yet. </p>
+				
+	{% endif %}
+			
 {% endblock %}
