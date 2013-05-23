@@ -1,33 +1,14 @@
 {% extends "base.html" %}
 
+{% block title %}Create an account{% endblock %}
+
 {% block content %}
-<div id="Route" align="left">
-    <a href="/">Home</a><a> > </a>
-    <a>Login</a>
-</div>
 
-{% if form.has_errors %}
-<p> Error validating user </p>
-{% endif%}
+  <h1>Create an account</h1>
 
-{% if user.is_authenticated %}
-	
-	<form method="post" action="/logout/">
-	
-	<input type="hidden" name="next" value="/" />
-	<input type="submit" value="logout" />
-	{% csrf_token %} 
-	</form>
-
-{% else %}
-	<form method="post" action=".">
-	<p><label for="id_username">User:</label>  {{ form.username }}</p>
-	<p><label for="id_password">Pass:</label>  {{ form.password }}</p> 
-	<input type="hidden" name="next" value="/" />
-	<input type="submit" value="login" /> 
-	{% csrf_token %} 
-	</form>
-	
-{% endif %}
-
+  <form action="" method="post">
+      {{ form.as_p }}
+      <input type="submit" value="Create the account">
+  </form>
+  
 {% endblock %}

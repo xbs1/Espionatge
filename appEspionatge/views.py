@@ -3,6 +3,10 @@ from django.template import Context
 from django.core import serializers
 from django.template.loader import get_template
 from django.contrib.auth.models import User
+from django import forms
+from django.contrib.auth.forms import UserCreationForm
+from django.http import HttpResponseRedirect
+from django.shortcuts import render
 
 from appEspionatge.models import *
 from xmlUtils  import *
@@ -50,7 +54,19 @@ def userpage(request, username):
 		})
 	output = template.render(variables)
 	return HttpResponse(output)
-	
+
+
+def register(request):
+
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            return HttpResponseRedirect("/cases/")
+    else:
+        form = UserCreationForm()
+    	return render(request, "registration/register.html", {'form': form, })
+    	
     
 def mainpage(request):	
 	template = get_template('mainpage.html')

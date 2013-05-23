@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     url(r'^clients/(\w+)/$', views.client),
 	url(r'^suspects/(\w+)/$', views.suspect),
     url(r'^detectives/(\w+)/$', views.detective),
+    url(r'^register/$', views.register),
     
 
     
@@ -28,4 +29,5 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^login/$', 'django.contrib.auth.views.login'),
     url(r'^logout/$', 'django.contrib.auth.views.logout'),
+
 )
