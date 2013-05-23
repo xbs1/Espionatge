@@ -1,4 +1,6 @@
 from django.db import models
+from django.views.generic.edit import CreateView
+
 
 class Client(models.Model):
 	id = models.AutoField(primary_key=True)

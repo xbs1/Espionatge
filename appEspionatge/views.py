@@ -8,7 +8,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 
+from django.views.generic.edit import CreateView
+
+
 from appEspionatge.models import *
+from appEspionatge.forms import *
 from xmlUtils  import *
 from jsonUtils import *
 
@@ -137,7 +141,7 @@ def case(request, ID):
 	try:
 		case = Case.objects.get(id=ID)
 	except:
-		raise Http404('Case not found.')
+		raise Http404('Cannot find case with ID "' + str(ID) + '"')
 		
 	if getFormat(request) == 'html':
 		template = get_template('case.html')
@@ -206,3 +210,21 @@ def detective(request, ID):
 		
 	return HttpResponse(output)		
 	
+class CaseCreate(CreateView):
+		
+	model = Case
+	template_name = 'form.html'
+	form_class = CaseForm
+	
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(CaseCreate, self).form_valid(form)
+
+
+class ClientCreate(CreateView):
+	pass
+class SuspectCreate(CreateView):
+	pass
+class DetectiveCreate(CreateView):
+	pass
+
