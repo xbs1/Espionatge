@@ -36,6 +36,11 @@ urlpatterns = patterns('',
 			form_class = CaseForm,
 			success_url="/cases/")),
 
+	url(r'^cases/(\w+)/delete/$', views.delete_case),
+	url(r'^clients/(\w+)/delete/$', views.delete_case),
+	url(r'^suspects/(\w+)/delete/$', views.delete_case),
+	url(r'^detectives/(\w+)/delete/$', views.delete_case),
+
 	url(r'^clients/(?P<pk>\d+)/edit/$',
 		UpdateView.as_view(
 			model = models.Client,
