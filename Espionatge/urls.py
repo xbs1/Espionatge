@@ -57,10 +57,10 @@ urlpatterns = patterns('',
 			form_class = DetectiveForm,
 			success_url="/detectives/")),
 			
-	#url(r'^cases/(\w+)/delete/$', views.deleteCase),
-	#url(r'^clients/(\w+)/delete/$', views.deleteClient),
-	#url(r'^suspects/(\w+)/delete/$', views.deleteSuspect),
-	#url(r'^detectives/(\w+)/delete/$', views.deleteDetective),
+	url(r'^cases/(\w+)/delete/$', views.delete_case),
+	url(r'^clients/(\w+)/delete/$', views.delete_client),
+	url(r'^suspects/(\w+)/delete/$', views.delete_suspect),
+	url(r'^detectives/(\w+)/delete/$', views.delete_detective),
 		
 	url(r'^register/$', views.register),
 	
