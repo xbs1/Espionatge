@@ -24,4 +24,18 @@
 	</tbody>
 </table>
 </div>
+</div>
+
+{% if user.is_authenticated %}
+
+	<div align="center">
+		<form action="edit/">
+	    	<input type="submit" value="Edit">
+		</form>
+	</div>
+
+{% else %}
+
+
+{% endif %}
 {% endblock %}
