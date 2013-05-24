@@ -4,10 +4,15 @@
 		{% load staticfiles %}
 		<link rel="stylesheet" type="text/css" href="{% static "base.css" %}"media="screen" />
 		<title>{% block title %}Espionatge{% endblock %}</title>
-	</head>
+			
+		 <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		<link rel="stylesheet" href="/resources/demos/style.css" />
 
-	<body>
+	</head>
 		
+	<body>
 		<div id="NavBar">
 			<a href="/">Home</a>
 		    <a href="/cases/">Cases</a>

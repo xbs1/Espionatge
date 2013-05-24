@@ -1,6 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
+
+	<script>
+		$(function() {
+
+			$( "#id_date" ).datepicker();
+		});
+	</script>
+		
 	<form method="post" action="">
 		{% csrf_token %}
 		<table>
@@ -9,4 +17,6 @@
 		<input type="submit" value="Submit"/>
 	</form>
 {% endblock %}
+
+
 
