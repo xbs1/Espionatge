@@ -1,17 +1,39 @@
 from django.conf.urls import patterns, include, url
 from django.utils import timezone
 
+from rest_framework import viewsets, routers
+
 from django.views.generic import DetailView, ListView, UpdateView
-from appEspionatge import views
-from appEspionatge import models
+from appEspionatge import views, models
 from appEspionatge.forms import *
+
+from django.contrib.auth.models import User
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
+	
+class ClientViewSet(viewsets.ModelViewSet):
+	model = Client
+	
+class SuspectViewSet(viewsets.ModelViewSet):
+	model = Suspect
+	
+class DetectiveViewSet(viewsets.ModelViewSet):
+	model = Detective
+	
+class CaseViewSet(viewsets.ModelViewSet):
+	model = Case
+
+# Routers provide an easy way of automatically determining the URL conf
+router = routers.DefaultRouter()
+router.register(r'clients',    ClientViewSet)
+router.register(r'suspects',   SuspectViewSet)
+router.register(r'detectives', DetectiveViewSet)
+router.register(r'cases',      CaseViewSet)
 
 urlpatterns = patterns('',
-
+	url(r'^api/', include(router.urls)),
     url(r'^$', views.mainpage),
     
     url(r'^cases/$', views.cases),
@@ -71,6 +93,8 @@ urlpatterns = patterns('',
 	url(r'^admin/', include(admin.site.urls)),
 	url(r'^login/$', 'django.contrib.auth.views.login'),
 	url(r'^logout/$', 'django.contrib.auth.views.logout'),
+	
+	 url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     
 )
 
