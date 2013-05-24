@@ -7,7 +7,12 @@
     <a href="/">Home</a><a> > </a>
     <a>Suspects</a>
 </div>
-	Suspects
+	
+	{% if user.is_authenticated %}
+	
+		<a href="/suspects/create/">Create a new Suspect</a>
+				
+	{% endif %}
 	
 	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
 	{% for suspect in suspects %}
@@ -20,6 +25,7 @@
 		<tr>
 	{% endfor %}
 	</table>
+	
 	
 
 {% endblock %}

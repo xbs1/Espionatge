@@ -4,16 +4,14 @@
 
 {% block content %}
 	
-	{% if user.is_authenticated %}
+		{% if user.is_authenticated %}
 	
-				<a href="/cases/create/">Create a new case</a>
-				<p><a href="/clients/create/">Create a new client</a></p>
-				<p><a href="/suspects/create/">Create a new suspect</a></p>
-				<p><a href="/detectives/create/">Create a new detective</a></p>
-				
-	{% else %}
-				<p>Thanks to visit us. Please, login or sign in if you have not done yet.</p>
-				
-	{% endif %}
+			<a>Welcome {{user}} vols un pernil?</a>
+	
+		{% else %}
 			
+			<a>Thanks to visit us. Please, login or sign in if you have not done yet.</a>
+				
+		{% endif %}
+						
 {% endblock %}
