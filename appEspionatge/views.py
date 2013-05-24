@@ -155,6 +155,36 @@ def case(request, ID):
 		
 	return HttpResponse(output)
 
+
+def update_case(request, ID):
+	try:
+		case = Case.objects.get(id=ID)	
+	except:
+		raise Http404('Suspect not found.')
+
+	case.name 		=	request.POST.get('name')
+	case.date 		=	request.POST.get('date')
+	case.clients 	=	request.POST.get('clients')
+	case.suspects 	=	request.POST.get('suspects')
+	case.detective 	=	request.POST.get('detective')
+	case.price 		=	request.POST.get('price')
+	
+
+	case.save()
+
+	return HttpResponse('updated')
+
+def delete_case(request, ID):
+	try:
+		case = Case.objects.get(id=ID)	
+	except:
+		raise Http404('Suspect not found.')
+
+	case.delete()
+
+	return HttpResponse('deleted')
+
+
 def client(request, ID):
 	try:
 		client = Client.objects.get(id=ID)	
@@ -173,6 +203,31 @@ def client(request, ID):
 		
 	return HttpResponse(output)	
 
+
+def update_client(request, ID):
+	try:
+		client = Client.objects.get(id=ID)	
+	except:
+		raise Http404('Suspect not found.')
+
+	client.name 	=	request.POST.get('name')
+	client.hide_id	=	request.POST.get('hide_id')
+
+	client.save()
+
+	return HttpResponse('updated')
+
+def delete_client(request, ID):
+	try:
+		client = Client.objects.get(id=ID)	
+	except:
+		raise Http404('Suspect not found.')
+
+	client.delete()
+
+	return HttpResponse('deleted')
+
+
 def suspect(request, ID):
 	try:
 		suspect = Suspect.objects.get(id=ID)	
@@ -190,6 +245,31 @@ def suspect(request, ID):
 		output = show_content(suspect, request, 'suspects')
 		
 	return HttpResponse(output)	
+
+
+def update_suspect(request, ID):
+	try:
+		suspect = Suspect.objects.get(id=ID)	
+	except:
+		raise Http404('Suspect not found.')
+
+	suspect.name 	=	request.POST.get('name')
+	suspect.history =	request.POST.get('history')
+
+	suspect.save()
+
+	return HttpResponse('updated')
+
+
+def delete_suspect(request, ID):
+	try:
+		suspect = Suspect.objects.get(id=ID)	
+	except:
+		raise Http404('Suspect not found.')
+
+	suspect.delete()
+
+	return HttpResponse('deleted')
 		
 
 def detective(request, ID):
@@ -208,8 +288,33 @@ def detective(request, ID):
 	else:
 		output = show_content(detective, request, 'detectives')
 		
-	return HttpResponse(output)		
-	
+	return HttpResponse(output)	
+
+
+def update_detective(request, ID):
+	try:
+		detective = Detective.objects.get(id=ID)	
+	except:
+		raise Http404('Detective not found.')
+
+	detective.name =		request.POST.get('name')
+	detective.rate =		request.POST.get('rate')
+	detective.experience = 	request.POST.get('experience')
+	detective.save()
+
+	return HttpResponse('updated')
+
+def delete_detective(request, ID):
+	try:
+		detective = Detective.objects.get(id=ID)	
+	except:
+		raise Http404('Detective not found.')
+
+	detective.delete()
+
+	return HttpResponse('deleted')
+
+
 class CaseCreate(CreateView):
 		
 	model = Case
@@ -241,7 +346,7 @@ class SuspectCreate(CreateView):
 	def form_valid(self, form):
 		form.instance.user = self.request.user
 		return super(SuspectCreate, self).form_valid(form)
-		
+
 
 class DetectiveCreate(CreateView):
 
