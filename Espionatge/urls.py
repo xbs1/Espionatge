@@ -29,29 +29,38 @@ urlpatterns = patterns('',
 	url(r'^suspects/(\w+)/$', views.suspect),
 	url(r'^detectives/(\w+)/$', views.detective),
 	
-	url(r'^cases/(\w+)/edit/$',
-	UpdateView.as_view(
-		model = models.Case,
-		template_name = 'form.html',
-		form_class = CaseForm)),
+	url(r'^cases/(?P<pk>\d+)/edit/$',
+		UpdateView.as_view(
+			model = models.Case,
+			template_name = 'form.html',
+			form_class = CaseForm,
+			success_url="/cases/")),
 
-	url(r'^clients/(\w+)/edit/$',
+	url(r'^clients/(?P<pk>\d+)/edit/$',
 		UpdateView.as_view(
 			model = models.Client,
 			template_name = 'form.html',
-			form_class = ClientForm)),
+			form_class = ClientForm,
+			success_url="/clients/")),
 		
-	url(r'^suspects/(\w+)/edit/$',
+	url(r'^suspects/(?P<pk>\d+)/edit/$',
 		UpdateView.as_view(
 			model = models.Suspect,
 			template_name = 'form.html',
-			form_class = SuspectForm)),
+			form_class = SuspectForm,
+			success_url="/suspects/")),
 
-	url(r'^detectives/(\w+)/edit/$',
+	url(r'^detectives/(?P<pk>\d+)/edit/$',
 		UpdateView.as_view(
 			model = models.Detective,
 			template_name = 'form.html',
-			form_class = DetectiveForm)),
+			form_class = DetectiveForm,
+			success_url="/detectives/")),
+			
+	#url(r'^cases/(\w+)/delete/$', views.deleteCase),
+	#url(r'^clients/(\w+)/delete/$', views.deleteClient),
+	#url(r'^suspects/(\w+)/delete/$', views.deleteSuspect),
+	#url(r'^detectives/(\w+)/delete/$', views.deleteDetective),
 		
 	url(r'^register/$', views.register),
 	
