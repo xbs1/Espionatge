@@ -222,9 +222,35 @@ class CaseCreate(CreateView):
 
 
 class ClientCreate(CreateView):
-	pass
+
+	model = Client
+	template_name = 'form.html'
+	form_class = ClientForm
+	
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(ClientCreate, self).form_valid(form)
+
+
 class SuspectCreate(CreateView):
-	pass
+
+	model = Suspect
+	template_name = 'form.html'
+	form_class = SuspectForm
+	
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(SuspectCreate, self).form_valid(form)
+		
+
 class DetectiveCreate(CreateView):
-	pass
+
+	model = Detective
+	template_name = 'form.html'
+	form_class = DetectiveForm
+	
+	def form_valid(self, form):
+		form.instance.user = self.request.user
+		return super(DetectiveCreate, self).form_valid(form)
+	
 

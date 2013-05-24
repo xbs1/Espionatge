@@ -20,9 +20,9 @@ urlpatterns = patterns('',
 	url(r'^suspects/$', views.suspects),
 	
 	url(r'^cases/create/$', views.CaseCreate.as_view(success_url="/cases/")),
-	url(r'^clients/create/$', views.ClientCreate.as_view()),
-	url(r'^suspects/create/$', views.SuspectCreate.as_view()),
-	url(r'^detectives/create/$', views.DetectiveCreate.as_view()),
+	url(r'^clients/create/$', views.ClientCreate.as_view(success_url="/clients/")),
+	url(r'^suspects/create/$', views.SuspectCreate.as_view(success_url="/suspects/")),
+	url(r'^detectives/create/$', views.DetectiveCreate.as_view(success_url="/detectives/")),
 	
 	url(r'^cases/(\w+)/$', views.case),
 	url(r'^clients/(\w+)/$', views.client),

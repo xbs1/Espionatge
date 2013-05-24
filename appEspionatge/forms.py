@@ -7,10 +7,16 @@ class CaseForm (ModelForm):
 		exclude = ('id',)
 		
 class ClientForm (ModelForm):
-	pass
+	class Meta:
+		model = Client
+		exclude = ('id',)
 	
 class SuspectForm (ModelForm):
-	pass
-	
+	class Meta:
+		model = Suspect
+		exclude = ('id',)	
+
 class DetectiveForm (ModelForm):
-	pass
+	class Meta:
+		model = Detective
+		exclude = ('id',)
