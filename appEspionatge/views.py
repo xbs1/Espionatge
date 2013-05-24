@@ -174,6 +174,7 @@ def update_case(request, ID):
 
 	return HttpResponse('updated')
 
+
 def delete_case(request, ID):
 	try:
 		case = Case.objects.get(id=ID)	
