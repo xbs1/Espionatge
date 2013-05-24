@@ -1,4 +1,5 @@
 from django.http import HttpResponse, Http404
+from django.shortcuts import redirect
 from django.template import Context
 from django.core import serializers
 from django.template.loader import get_template
@@ -175,7 +176,7 @@ def update_case(request, ID):
 	return HttpResponse('updated')
 
 
-def delete_case(request, ID, succes_url="/cases/"):
+def delete_case(request, ID):
 	try:
 		case = Case.objects.get(id=ID)	
 	except:
@@ -183,7 +184,7 @@ def delete_case(request, ID, succes_url="/cases/"):
 
 	case.delete()
 
-	return HttpResponse('deleted')
+	return redirect('/cases/')
 
 
 def client(request, ID):
@@ -218,7 +219,7 @@ def update_client(request, ID):
 
 	return HttpResponse('updated')
 
-def delete_client(request, ID, succes_url="/clients/"):
+def delete_client(request, ID):
 	try:
 		client = Client.objects.get(id=ID)	
 	except:
@@ -226,7 +227,7 @@ def delete_client(request, ID, succes_url="/clients/"):
 
 	client.delete()
 
-	return HttpResponse('deleted')
+	return redirect('/clients/')
 
 
 def suspect(request, ID):
@@ -262,7 +263,7 @@ def update_suspect(request, ID):
 	return HttpResponse('updated')
 
 
-def delete_suspect(request, ID, succes_url="/suspects/"):
+def delete_suspect(request, ID):
 	try:
 		suspect = Suspect.objects.get(id=ID)	
 	except:
@@ -270,7 +271,7 @@ def delete_suspect(request, ID, succes_url="/suspects/"):
 
 	suspect.delete()
 
-	return HttpResponse('deleted')
+	return redirect('/suspects/')
 		
 
 def detective(request, ID):
@@ -305,7 +306,7 @@ def update_detective(request, ID):
 
 	return HttpResponse('updated')
 
-def delete_detective(request, ID, succes_url="/detectives/"):
+def delete_detective(request, ID):
 	try:
 		detective = Detective.objects.get(id=ID)	
 	except:
@@ -313,7 +314,7 @@ def delete_detective(request, ID, succes_url="/detectives/"):
 
 	detective.delete()
 
-	return HttpResponse('deleted')
+	return redirect('/detectives/')
 
 
 class CaseCreate(CreateView):

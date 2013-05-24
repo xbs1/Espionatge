@@ -61,11 +61,6 @@ urlpatterns = patterns('',
 			template_name = 'form.html',
 			form_class = DetectiveForm,
 			success_url="/detectives/")),
-			
-	url(r'^cases/(\w+)/delete/$', views.delete_case),
-	url(r'^clients/(\w+)/delete/$', views.delete_client),
-	url(r'^suspects/(\w+)/delete/$', views.delete_suspect),
-	url(r'^detectives/(\w+)/delete/$', views.delete_detective),
 		
 	url(r'^register/$', views.register),
 	
@@ -79,14 +74,3 @@ urlpatterns = patterns('',
     
 )
 
-"""
-
-
-
-
-
-
-
-
-
-"""
