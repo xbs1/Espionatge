@@ -160,7 +160,7 @@ def update_case(request, ID):
 	try:
 		case = Case.objects.get(id=ID)	
 	except:
-		raise Http404('Suspect not found.')
+		raise Http404('Cannot find case with ID "' + str(ID) + '"')
 
 	case.name 		=	request.POST.get('name')
 	case.date 		=	request.POST.get('date')
@@ -179,7 +179,7 @@ def delete_case(request, ID, succes_url="/cases/"):
 	try:
 		case = Case.objects.get(id=ID)	
 	except:
-		raise Http404('Suspect not found.')
+		raise Http404('Cannot find case with ID "' + str(ID) + '"')
 
 	case.delete()
 
@@ -190,7 +190,7 @@ def client(request, ID):
 	try:
 		client = Client.objects.get(id=ID)	
 	except:
-		raise Http404('Client not found.')
+		raise Http404('Cannot find client with ID "' + str(ID) + '"')
 
 	if getFormat(request) == 'html':
 		template = get_template('client.html')
@@ -209,7 +209,7 @@ def update_client(request, ID):
 	try:
 		client = Client.objects.get(id=ID)	
 	except:
-		raise Http404('Suspect not found.')
+		raise Http404('Cannot find client with ID "' + str(ID) + '"')
 
 	client.name 	=	request.POST.get('name')
 	client.hide_id	=	request.POST.get('hide_id')
@@ -222,7 +222,7 @@ def delete_client(request, ID, succes_url="/clients/"):
 	try:
 		client = Client.objects.get(id=ID)	
 	except:
-		raise Http404('Suspect not found.')
+		raise Http404('Cannot find client with ID "' + str(ID) + '"')
 
 	client.delete()
 
@@ -233,7 +233,7 @@ def suspect(request, ID):
 	try:
 		suspect = Suspect.objects.get(id=ID)	
 	except:
-		raise Http404('Suspect not found.')
+		raise Http404('Cannot find suspect with ID "' + str(ID) + '"')
 
 	if getFormat(request) == 'html':
 		template = get_template('suspect.html')
@@ -266,7 +266,7 @@ def delete_suspect(request, ID, succes_url="/suspects/"):
 	try:
 		suspect = Suspect.objects.get(id=ID)	
 	except:
-		raise Http404('Suspect not found.')
+		raise Http404('Cannot find suspect with ID "' + str(ID) + '"')
 
 	suspect.delete()
 
@@ -277,7 +277,7 @@ def detective(request, ID):
 	try:
 		detective = Detective.objects.get(id=ID)	
 	except:
-		raise Http404('Detective not found.')
+		raise Http404('Cannot find detective with ID "' + str(ID) + '"')
 
 	if getFormat(request) == 'html':
 		template = get_template('detective.html')
@@ -296,7 +296,7 @@ def update_detective(request, ID):
 	try:
 		detective = Detective.objects.get(id=ID)	
 	except:
-		raise Http404('Detective not found.')
+		raise Http404('Cannot find detective with ID "' + str(ID) + '"')
 
 	detective.name =		request.POST.get('name')
 	detective.rate =		request.POST.get('rate')
@@ -309,7 +309,7 @@ def delete_detective(request, ID, succes_url="/detectives/"):
 	try:
 		detective = Detective.objects.get(id=ID)	
 	except:
-		raise Http404('Detective not found.')
+		raise Http404('Cannot find detective with ID "' + str(ID) + '"')
 
 	detective.delete()
 
