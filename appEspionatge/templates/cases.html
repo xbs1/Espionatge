@@ -8,12 +8,17 @@
     <a>Cases</a>
 </div>
 	Cases
-	{% for case in cases %}
 	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+	{% for case in cases %}
+	
 		<tr> 
 			<td><a href='{{case.id}}'>{{case.name}}</a></td>
+			{% if user.is_authenticated %}
+				<td><a href='{{case.id}}/edit'>Edit</a></td>
+				<td><a href='{{case.id}}/delete'>Delete</a></td>
+			{% endif %}
 		<tr>
-	</table>
 	{% endfor %}
+	</table>
 
 {% endblock %}

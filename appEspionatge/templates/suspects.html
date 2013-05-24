@@ -8,12 +8,18 @@
     <a>Suspects</a>
 </div>
 	Suspects
-	{% for suspect in suspects %}
+	
 	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+	{% for suspect in suspects %}
 		<tr> 
 			<td><a href='{{suspect.id}}'>{{suspect.name}}</a></td>
+			{% if user.is_authenticated %}
+				<td><a href='{{suspect.id}}/edit'>Edit</a></td>
+				<td><a href='{{suspect.id}}/delete'>Delete</a></td>
+			{% endif %}
 		<tr>
-	</table>
 	{% endfor %}
+	</table>
+	
 
 {% endblock %}

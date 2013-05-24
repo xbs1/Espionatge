@@ -9,12 +9,17 @@
 			    <a>Detectives</a>
 	</div>
 	Detectives
-	{% for detective in detectives %}
+	
 	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+	{% for detective in detectives %}
 		<tr> 
 			<td><a href='{{detective.id}}'>{{detective.name}}</a></td>
+			{% if user.is_authenticated %}
+				<td><a href='{{detective.id}}/edit'>Edit</a></td>
+				<td><a href='{{detective.id}}/delete'>Delete</a></td>
+			{% endif %}	
 		<tr>
-	</table>
 	{% endfor %}
-
+	</table>
+	
 {% endblock %}

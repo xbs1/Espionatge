@@ -8,12 +8,18 @@
 			    <a>Clients</a>
 	</div>
 	Clients
-	{% for client in clients %}
+	
 	<table align="center" border="1" cellpadding="3" width="300" cellspacing="0">
+	{% for client in clients %}
 		<tr> 
 			<td><a href='{{client.id}}'>{{client.name}}</a></td>
+			{% if user.is_authenticated %}
+				<td><a href='{{client.id}}/edit'>Edit</a></td>
+				<td><a href='{{client.id}}/delete'>Delete</a></td>
+			{% endif %}
 		<tr>
-	</table>	
 	{% endfor %}
+	</table>	
+	
 
 {% endblock %}
