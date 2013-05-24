@@ -175,7 +175,7 @@ def update_case(request, ID):
 	return HttpResponse('updated')
 
 
-def delete_case(request, ID):
+def delete_case(request, ID, succes_url="/cases/"):
 	try:
 		case = Case.objects.get(id=ID)	
 	except:
@@ -218,7 +218,7 @@ def update_client(request, ID):
 
 	return HttpResponse('updated')
 
-def delete_client(request, ID):
+def delete_client(request, ID, succes_url="/clients/"):
 	try:
 		client = Client.objects.get(id=ID)	
 	except:
@@ -262,7 +262,7 @@ def update_suspect(request, ID):
 	return HttpResponse('updated')
 
 
-def delete_suspect(request, ID):
+def delete_suspect(request, ID, succes_url="/suspects/"):
 	try:
 		suspect = Suspect.objects.get(id=ID)	
 	except:
@@ -305,7 +305,7 @@ def update_detective(request, ID):
 
 	return HttpResponse('updated')
 
-def delete_detective(request, ID):
+def delete_detective(request, ID, succes_url="/detectives/"):
 	try:
 		detective = Detective.objects.get(id=ID)	
 	except:
