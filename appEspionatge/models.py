@@ -105,7 +105,7 @@ class Review(models.Model):
 	RATING_CHOICES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
 	rating = models.PositiveSmallIntegerField('Rating (stars)', blank=False, default=3,choices=RATING_CHOICES)
 	comment = models.TextField(blank=True, null=True)
-	user = models.ForeignKey(User, default=User.objects.get(id=1))
+	user = models.ForeignKey(User, default=None)
 	date = models.DateField(default=date.today)
 	
 	class Meta:
