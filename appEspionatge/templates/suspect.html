@@ -11,17 +11,25 @@
 </div>
 
 <div align="center">
-	<div itemscope itemtype="http://schema.org/Person">
+	<div vocab="http://schema.org/" typeof="Person">
 		<table border="1" cellpadding="3" width="300" cellspacing="0">
 			<tbody align="center">
-			<tr> 
-				<th>Name</th>
-				<td><span itemprop="name">{{suspect.name}}</span></td>
-			<tr>
-			<tr> 
-				<th>Delictive history</th>
-				<td>{{suspect.history}}</td>
-			<tr>
+				<tr> 
+					<th>Name</th>
+					<td><span property="name">{{suspect.name}}</span></td>
+				</tr>
+				<tr> 
+					<th>Delictive history</th>
+					<td>{{suspect.history}}</td>
+				</tr>
+				<tr> 
+					<th>Postal Code</th>
+					<td>
+						<div property="address" typeof="PostalAddress">
+							<span property="postalCode">46562</span>
+						</div>
+					</td>
+				</tr>	
 			</tbody>
 		</table>
 	</div>

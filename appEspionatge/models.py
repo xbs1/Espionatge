@@ -25,6 +25,7 @@ class Suspect(models.Model):
 	id = models.AutoField(primary_key=True)
 	name = models.TextField(max_length=100)
 	history = models.TextField(max_length=200)
+	postalCode = models.IntegerField()
 
 	def get_path(self, request):
 		path = "http://" +  request.get_host() + "/suspects/" + str(self.id)
@@ -34,7 +35,8 @@ class Suspect(models.Model):
 		return { 
 		'id': self.id,
 		'name': self.name,
-		'history': self.history
+		'history': self.history,
+		'postalCode': self.postalCode
 		} 
 		
 	def __unicode__(self):
