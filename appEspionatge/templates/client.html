@@ -12,19 +12,20 @@
 </div>
 		
 <div align="center">
-<table border="1" cellpadding="3" width="300" cellspacing="0">
-	<tbody align="center">
-	<tr> 
-		<th>Client name</th>
-		<td>{{client.name}}</td>
-	<tr>
-	<tr> 
-		<th>Hide identity</th>
-		<td>{{client.hide_id}}</td>
-	<tr>
-	</tbody>
-</table>	
-
+	<div itemscope itemtype="http://schema.org/Person">
+		<table border="1" cellpadding="3" width="300" cellspacing="0">
+			<tbody align="center">
+			<tr> 
+				<th>Client name</th>
+				<td><span itemprop="name">{{client.name}}</span></td>
+			<tr>
+			<tr> 
+				<th>Hide identity</th>
+				<td>{{client.hide_id}}</td>
+			<tr>
+			</tbody>
+		</table>	
+	</div>
 </div>
 
 {% if user.is_authenticated %}

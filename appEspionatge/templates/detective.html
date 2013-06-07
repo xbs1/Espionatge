@@ -1,8 +1,9 @@
 {% extends "base.html" %}
 
-{% block title %}Detective{% endblock %}
+{% block title %}Detective {{detective.name}}{% endblock %}
 
 {% block content %}
+
 
 <div id="Route" align="left">
     <a href="/">Home</a><a> > </a>
@@ -11,23 +12,26 @@
 </div>
 
 <div align="center">
-<table border="1" cellpadding="3" width="300" cellspacing="0">
-	<tbody align="center">
-	<tr> 
-		<th>Name or alias</th>
-		<td>{{detective.name}}</td>
-	<tr>
-	<tr> 
-		<th>Rate (/hour)</th>
-		<td>{{detective.rate}}</td>
-	<tr>
-	<tr> 
-		<th>Experience (in years)</th>
-		<td>{{detective.experience}}</td>
-	<tr>
-	</tbody>
-</table>
-</div>
+	<div itemscope itemtype="http://schema.org/Person">
+		<span itemprop="jobTitle" content = "Detective"></span>
+		
+		<table border="1" cellpadding="3" width="300" cellspacing="0">
+			<tbody align="center">
+			<tr> 
+				<th>Name or alias</th>
+				<td><span itemprop="name">{{detective.name}}</span></td>
+			<tr>
+			<tr> 
+				<th>Rate (/hour)</th>
+				<td>{{detective.rate}}</td>
+			<tr>
+			<tr> 
+				<th>Experience (in years)</th>
+				<td>{{detective.experience}}</td>
+			<tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 
 {% if user.is_authenticated %}
@@ -37,9 +41,6 @@
 	    	<input type="submit" value="Edit">
 		</form>
 	</div>
-
-{% else %}
-
-
+	
 {% endif %}
 {% endblock %}

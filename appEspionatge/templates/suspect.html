@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Suspects{% endblock %}
+{% block title %}Suspects {{suspect.name}}{% endblock %}
 
 {% block content %}
 
@@ -11,19 +11,20 @@
 </div>
 
 <div align="center">
-<table border="1" cellpadding="3" width="300" cellspacing="0">
-	<tbody align="center">
-	<tr> 
-		<th>Name</th>
-		<td>{{suspect.name}}</td>
-	<tr>
-	<tr> 
-		<th>Delictive history</th>
-		<td>{{suspect.history}}</td>
-	<tr>
-	</tbody>
-</table>
-</div>
+	<div itemscope itemtype="http://schema.org/Person">
+		<table border="1" cellpadding="3" width="300" cellspacing="0">
+			<tbody align="center">
+			<tr> 
+				<th>Name</th>
+				<td><span itemprop="name">{{suspect.name}}</span></td>
+			<tr>
+			<tr> 
+				<th>Delictive history</th>
+				<td>{{suspect.history}}</td>
+			<tr>
+			</tbody>
+		</table>
+	</div>
 </div>
 
 {% if user.is_authenticated %}
