@@ -1,6 +1,7 @@
 from django.http import HttpResponse, Http404
 from django.shortcuts import redirect
 from django.template import Context
+from django.template import RequestContext
 from django.core import serializers
 from django.template.loader import get_template
 from django.contrib.auth.models import User
@@ -8,8 +9,11 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
-
+from django.views.decorators.csrf import csrf_protect
+from django.core.context_processors import csrf
 from django.views.generic.edit import CreateView
+from django.shortcuts import get_object_or_404
+
 
 
 from appEspionatge.models import *
@@ -50,6 +54,7 @@ def show_content(instance, request, path ):
 def userpage(request, username):
 	try:
 		user = User.objects.get(username=username)
+		user = self.adminuser
 	except:
 		raise Http404('User not found.')
 	
@@ -186,18 +191,22 @@ def delete_case(request, ID):
 
 	return redirect('/cases/')
 
-
+@csrf_protect
 def client(request, ID):
 	try:
 		client = Client.objects.get(id=ID)	
 	except:
 		raise Http404('Cannot find client with ID "' + str(ID) + '"')
 
+	RATING_CHOICES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
+
+
 	if getFormat(request) == 'html':
 		template = get_template('client.html')
-		variables = Context({
+		variables = RequestContext(request, {
 			'user' : request.user,
-			'client': client
+			'client': client,
+			'RATING_CHOICES' : RATING_CHOICES
 			})
 		output = template.render(variables)
 	else:
@@ -360,4 +369,19 @@ class DetectiveCreate(CreateView):
 		form.instance.user = self.request.user
 		return super(DetectiveCreate, self).form_valid(form)
 	
+@csrf_protect
+def review(request, pk):
+	client = get_object_or_404(Client, pk=pk)
+	review = ClientReview	(
+								rating=request.POST['rating'],
+								comment=request.POST['comment'],
+								user=request.user,
+								client=client
+							)
+	review.save()
+	#return HttpResponseRedirect(reverse('appEspionatge:clients',args=(client.id,)))
+	return redirect('/clients/'+ str(pk))
+
+def getClientReviews(client):
+	pass
 

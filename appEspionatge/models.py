@@ -1,6 +1,7 @@
 from django.db import models
 from django.views.generic.edit import CreateView
-
+from django.contrib.auth.models import User
+from datetime import date
 
 class Client(models.Model):
 	id = models.AutoField(primary_key=True)
@@ -99,3 +100,16 @@ class Case(models.Model):
 	def __unicode__(self):
 		return self.name
 
+class Review(models.Model):
+
+	RATING_CHOICES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
+	rating = models.PositiveSmallIntegerField('Rating (stars)', blank=False, default=3,choices=RATING_CHOICES)
+	comment = models.TextField(blank=True, null=True)
+	user = models.ForeignKey(User, default=User.objects.get(id=1))
+	date = models.DateField(default=date.today)
+	
+	class Meta:
+		abstract = True
+
+class ClientReview(Review):
+	client = models.ForeignKey(Client)

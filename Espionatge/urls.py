@@ -94,7 +94,13 @@ urlpatterns = patterns('',
 	url(r'^login/$', 'django.contrib.auth.views.login'),
 	url(r'^logout/$', 'django.contrib.auth.views.logout'),
 	
-	 url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     
+
+	#Create a restaurant review, ex: /clients/1/reviews/create/
+	url(r'^clients/(\w+)/reviews/create/$',views.review),
+
+
+
 )
 
