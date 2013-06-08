@@ -113,3 +113,9 @@ class Review(models.Model):
 
 class ClientReview(Review):
 	client = models.ForeignKey(Client)
+
+class CaseReview(Review):
+	case = models.ForeignKey(Case)
+
+class SuspectReview(Review):
+	suspect = models.ForeignKey(Suspect)

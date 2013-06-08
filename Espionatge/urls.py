@@ -97,9 +97,12 @@ urlpatterns = patterns('',
 	url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     
 
-	#Create a restaurant review, ex: /clients/1/reviews/create/
-	url(r'^clients/(\w+)/reviews/create/$',views.review),
-
+	#Create a client review, ex: /clients/1/reviews/create/
+	url(r'^clients/(\w+)/reviews/create/$',views.create_client_review),
+	#Create a suspect review, ex: /suspects/1/reviews/create/
+	url(r'^suspects/(\w+)/reviews/create/$',views.create_suspect_review),
+	#Create a case review, ex: /cases/1/reviews/create/
+	url(r'^cases/(\w+)/reviews/create/$',views.create_case_review),
 
 
 )

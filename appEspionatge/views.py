@@ -21,7 +21,6 @@ from appEspionatge.forms import *
 from xmlUtils  import *
 from jsonUtils import *
 
-
 def getFormat(request):
 
 	formatting = request.GET.get('format')	
@@ -149,11 +148,14 @@ def case(request, ID):
 	except:
 		raise Http404('Cannot find case with ID "' + str(ID) + '"')
 		
+	RATING_CHOICES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
+
 	if getFormat(request) == 'html':
 		template = get_template('case.html')
-		variables = Context({
+		variables = RequestContext(request, {
 			'user' : request.user,
-			'case': case
+			'case': case,
+			'RATING_CHOICES' : RATING_CHOICES
 			})
 		output = template.render(variables)
 	else:
@@ -245,11 +247,14 @@ def suspect(request, ID):
 	except:
 		raise Http404('Cannot find suspect with ID "' + str(ID) + '"')
 
+	RATING_CHOICES = ((1, 1), (2, 2), (3, 3), (4, 4), (5, 5))
+	
 	if getFormat(request) == 'html':
 		template = get_template('suspect.html')
-		variables = Context({
+		variables = RequestContext(request, {
 			'user' : request.user,
-			'suspect': suspect
+			'suspect': suspect,
+			'RATING_CHOICES' : RATING_CHOICES
 			})
 		output = template.render(variables)
 	else:
@@ -368,10 +373,13 @@ class DetectiveCreate(CreateView):
 	def form_valid(self, form):
 		form.instance.user = self.request.user
 		return super(DetectiveCreate, self).form_valid(form)
-	
+
+
 @csrf_protect
-def review(request, pk):
+def create_client_review(request, pk):
+
 	client = get_object_or_404(Client, pk=pk)
+	to_redirect = '/clients/' + str(pk)
 	review = ClientReview	(
 								rating=request.POST['rating'],
 								comment=request.POST['comment'],
@@ -379,9 +387,43 @@ def review(request, pk):
 								client=client
 							)
 	review.save()
-	#return HttpResponseRedirect(reverse('appEspionatge:clients',args=(client.id,)))
-	return redirect('/clients/'+ str(pk))
+	return redirect(to_redirect)
+
+@csrf_protect
+def create_suspect_review(request, pk):
+
+	suspect = get_object_or_404(Suspect, pk=pk)
+	to_redirect = '/suspects/' + str(pk)
+	review = SuspectReview 	(
+								rating=request.POST['rating'],
+								comment=request.POST['comment'],
+								user=request.user,
+								suspect=suspect 
+							)
+	review.save()
+	return redirect(to_redirect)
+
+@csrf_protect
+def create_case_review(request, pk):
+
+	case = get_object_or_404(Case, pk=pk)
+	to_redirect = '/cases/' + str(pk)
+	review = CaseReview 	(
+								rating=request.POST['rating'],
+								comment=request.POST['comment'],
+								user=request.user,
+								case=case 
+							)
+	review.save()
+	return redirect(to_redirect)
+
 
 def getClientReviews(client):
+	pass
+
+def getSuspectReview(suspect):
+	pass
+
+def getCaseReview(case):
 	pass
 
