@@ -60,7 +60,7 @@
 
 	<h2>Reviews</h2>
 	<ul>
-		{% for review in case.reviews %}
+		{% for review in case.casereview_set.all %}
 			<li>
 				<p>{{ review.rating }} star{{ review.rating|pluralize }}</p>
 				<p>{{ review.comment }}</p>
